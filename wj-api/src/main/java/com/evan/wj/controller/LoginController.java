@@ -18,10 +18,10 @@ import java.util.Objects;
 @Controller public class LoginController {
 	@CrossOrigin @PostMapping(value = "/api/login") @ResponseBody public Result login(@RequestBody User requestUser) {
 		// 对 html 标签进行转义，防止 XSS 攻击
-		String username = requestUser.getUsername();
+		String username = requestUser.getUserName();
 		username = HtmlUtils.htmlEscape(username);
 
-		if (!Objects.equals("admin", username) || !Objects.equals("123456", requestUser.getPassword())) {
+		if (!Objects.equals("admin", username) || !Objects.equals("123456", requestUser.getPassWord())) {
 			String message = "账号密码错误";
 			System.out.println("test");
 			return new Result(400);
