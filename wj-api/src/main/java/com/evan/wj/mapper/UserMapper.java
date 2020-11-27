@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository public interface UserMapper {
 
-	User Sel(int id);
+	User getUserById(int id);
 }

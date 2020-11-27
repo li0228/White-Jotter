@@ -1,5 +1,6 @@
 package com.evan.wj.controller;
 
+import com.evan.wj.pojo.User;
 import com.evan.wj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("getUser/{id}") public String GetUser(@PathVariable int id) {
-		return userService.Sel(id).toString();
+	@RequestMapping("getUser/{id}") public User GetUser(@PathVariable int id) {
+		return userService.getUserById(id);
 	}
 }
