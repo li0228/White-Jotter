@@ -1,7 +1,7 @@
 package com.evan.wj.controller;
 
-import com.evan.wj.pojo.User;
-import com.evan.wj.service.UserService;
+import com.evan.wj.bean.User;
+import com.evan.wj.service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController @RequestMapping("/testBoot") public class UserController {
-	@Autowired private UserService userService;
+	@Autowired private UserServiceImpl userService;
 
 	/**
 	 * 根据id获取用户

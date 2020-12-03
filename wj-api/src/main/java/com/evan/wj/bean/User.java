@@ -1,4 +1,6 @@
-package com.evan.wj.pojo;
+package com.evan.wj.bean;
+
+import java.util.Set;
 
 /**
  * 用户类
@@ -7,16 +9,32 @@ package com.evan.wj.pojo;
  * @date 2020/11/26 20:37
  */
 public class User {
-	private Integer id;
+	private String id;
 	private String userName;
 	private String passWord;
 	private String realName;
 
-	public Integer getId() {
+	/**
+	 * 用户对应的角色集合
+	 */
+	private Set<Role> roles;
+
+	public User() {
+	}
+
+	public User(String id, String userName, String passWord, String realName, Set<Role> roles) {
+		this.id = id;
+		this.userName = userName;
+		this.passWord = passWord;
+		this.realName = realName;
+		this.roles = roles;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -42,5 +60,13 @@ public class User {
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }

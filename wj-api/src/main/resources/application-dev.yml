@@ -11,10 +11,6 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
 
-#showSql
+#项目日志路径
 logging:
-  level:
-    com:
-      evan:
-        wj:
-          mapper: debug
+  levels: info
