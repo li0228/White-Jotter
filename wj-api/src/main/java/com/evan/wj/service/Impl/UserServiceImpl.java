@@ -1,6 +1,6 @@
 package com.evan.wj.service.Impl;
 
-import com.evan.wj.mapper.UserMapper;
+import com.evan.wj.dao.UserMapper;
 import com.evan.wj.bean.User;
 import com.evan.wj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

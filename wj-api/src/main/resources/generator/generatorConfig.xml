@@ -40,17 +40,24 @@
             <!-- 默认false 是否对类CHAR类型的列的数据进行trim操作 -->
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <!--&lt;!&ndash; 生成映射文件的包名和位置&ndash;&gt;-->
-        <!--<sqlMapGenerator targetPackage="Mapper" targetProject="src/main/resources">-->
-        <!--<property name="enableSubPackages" value="true"/>-->
-        <!--</sqlMapGenerator>-->
-        <!--&lt;!&ndash; 生成DAO的包名和位置&ndash;&gt;-->
-        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.heqiang.springboot_user.dao" targetProject="src/main/java">-->
-        <!--<property name="enableSubPackages" value="true"/>-->
-        <!--</javaClientGenerator>-->
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="com.evan.wj.mapper" targetProject="src/test/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.evan.wj.dao" targetProject="src/test/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <!-- <table tableName="risk_model_order" domainObjectName="DSRiskModelOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-         <table tableName="tel_bill_record" domainObjectName="DSTelBillRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table tableName="test"></table>
+        <table
+                tableName="test"
+                domainObjectName="Test"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="true">
+        </table>
+
     </context>
 </generatorConfiguration>

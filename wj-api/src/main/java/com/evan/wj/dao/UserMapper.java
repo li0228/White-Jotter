@@ -1,4 +1,4 @@
-package com.evan.wj.mapper;
+package com.evan.wj.dao;
 
 import com.evan.wj.bean.User;
 import org.springframework.stereotype.Repository;
