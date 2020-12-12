@@ -1,15 +1,10 @@
 package com.evan.wj.shiro;
 
-import com.evan.wj.bean.Permission;
-import com.evan.wj.bean.Role;
 import com.evan.wj.bean.User;
 import com.evan.wj.service.LoginService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import com.evan.wj.service.UserService;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +19,7 @@ import org.springframework.util.StringUtils;
 public class Customrealm extends AuthorizingRealm {
 
 	@Autowired private LoginService loginService;
+	@Autowired private UserService userService;
 
 	/**
 	 * 权限配置
@@ -32,20 +28,7 @@ public class Customrealm extends AuthorizingRealm {
 	 * @return
 	 */
 	@Override protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-		// 偶去登录名
-		String name = (String) principalCollection.getPrimaryPrincipal();
-		// 查询用户名称
-		User user = loginService.getMapByName(name);
-		// 添加角色权限
-		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-		for (Role role : user.getRoles()) {
-			// 添加角色
-			simpleAuthorizationInfo.addRole(role.getRoleName());
-			for (Permission permission : role.getPermission()) {
-				simpleAuthorizationInfo.addStringPermission(permission.getPermissionsName());
-			}
-		}
-		return simpleAuthorizationInfo;
+		return null;
 	}
 
 	/**
@@ -60,15 +43,21 @@ public class Customrealm extends AuthorizingRealm {
 			return null;
 		}
 		// 获取用户信息
-		String name = authenticationToken.getPrincipal().toString();
-		User user = loginService.getMapByName(name);
+		String username = (String) authenticationToken.getPrincipal();                //得到用户名
+		String password = new String((char[]) authenticationToken.getCredentials());    //得到密码
+
+		// 判断是否有这个用户
+		User user = userService.getUserByName(username);
 		if (user == null) {
-			// 这里返回后会报出异常
-			return null;
-		} else {
-			//这里验证authenticationToken和simpleAuthenticationInfo的信息
-			SimpleAuthenticationInfo simpleAuthorizationInfo = new SimpleAuthenticationInfo();
-			return simpleAuthorizationInfo;
+			throw new UnknownAccountException();//没有找到账号异常
 		}
+		String passWord = user.getPassWord();
+		/**AuthenticatingRealm使用CredentialsMatcher进行密码匹配**/
+		if (null != username && null != password) {
+			return new SimpleAuthenticationInfo(username, password, getName());
+		} else {
+			return null;
+		}
+
 	}
 }

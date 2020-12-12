@@ -12,9 +12,15 @@ import org.springframework.stereotype.Service;
  */
 
 @Service public class UserServiceImpl implements UserService {
+
 	@Autowired UserMapper userMapper;
 
 	public User getUserById(int id) {
-		return userMapper.getUserById(id);
+		return userMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public User getUserByName(String name) {
+		return userMapper.selectByName(name);
 	}
 }

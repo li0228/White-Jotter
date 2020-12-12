@@ -20,6 +20,7 @@
                         connectionURL="jdbc:mysql://127.0.0.1:3306/White_jotter?serverTimezone=Asia/Shanghai"
                         userId="root"
                         password="123456">
+            <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
         <!-- 类型转换 -->
         <javaTypeResolver>
@@ -49,14 +50,25 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <!--<table-->
+        <!--tableName="test"-->
+        <!--domainObjectName="Test"-->
+        <!--enableCountByExample="false"-->
+        <!--enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false"-->
+        <!--enableSelectByExample="false"-->
+        <!--selectByExampleQueryId="true">-->
+        <!--</table>-->
+
+        <!--用户表-->
         <table
-                tableName="test"
-                domainObjectName="Test"
+                tableName="user"
+                domainObjectName="User"
                 enableCountByExample="false"
                 enableUpdateByExample="false"
                 enableDeleteByExample="false"
                 enableSelectByExample="false"
-                selectByExampleQueryId="true">
+                selectByExampleQueryId="false">
         </table>
 
     </context>
